@@ -9,48 +9,54 @@ public class Bebedor
 {
     // instance variables - replace the example below with your own
     private String nombre;
-    private int cantidadAlcohol;
-    private int limiteAlcohol;
+    private float cantidadAlcohol;
+    private float limiteAlcohol;
+    private int numeroCopas;
     
-
     /**
      * Constructor for objects of class Bebedor
      */
-    public Bebedor(String nombre, int limiteAlcohol)
+    public Bebedor(String nombre, float limiteAlcohol)
     {
         this.nombre = nombre;
         cantidadAlcohol = 0;
         this.limiteAlcohol = limiteAlcohol;
+        numeroCopas = 0;
+    }
+    
+    /*
+     * Devuelve el alcohol en sangre del bebedor
+     */
+    public float getCantidadAlcohol()
+    {
+        return cantidadAlcohol;
     }
     
     /*
      * Tomar una copa
      */
-    public void borrachera(Cubata copa)
+    public void beberCopa(Cubata copa)
     {
+        float alcoholCopa;
+        
+        
         if(cantidadAlcohol > limiteAlcohol)
-        {
-            cantidadAlcohol = cantidadAlcohol + copa.getBeber();
-        }
-        else
         {
             System.out.println("No quiero mas copas");
         }
-    }
-    
-    /*
-     * Comprueba la cantidad de alcohol
-     */
-    public void cantidadAl()
-    {
-        if(cantidadAlcohol > 0)
-        {
-            System.out.println("He bebido" + cantidadAlcohol);
-        }
         else
         {
-            System.out.println("No he bebido nada");
+            if(numeroCopas >= 5)
+            {
+                cantidadAlcohol = cantidadAlcohol + (copa.getCantidadAlcohol() * 2);
+            }
+            else
+            {
+                cantidadAlcohol = cantidadAlcohol + copa.getCantidadAlcohol();
+            }
+            numeroCopas=numeroCopas+1;
         }
+        
     }
     
     /*
@@ -58,21 +64,21 @@ public class Bebedor
      */
     public void pregunta(String preg)
     {
-        if(cantidadAlcohol > limiteAlcohol)
+        if((cantidadAlcohol > limiteAlcohol) || (preg.contains(nombre)))
         {
-            System.out.println("Gritando: " + preg);
+            System.out.println(preg.toUpperCase());
         }
         else
         {
-            if(preg.length()%2 == 0)
-            {
-                System.out.println("Si");
-            }
-            else
+            int numeroDeLetraDeLaPregunta = preg.length();
+            if(numeroDeLetraDeLaPregunta % 2 != 0)
             {
                 System.out.println("No");
             }
+            else
+            {
+                System.out.println("Si");
+            }
         }
     }
-
 }

@@ -9,18 +9,21 @@ public class Cubata
 {
     // instance variables - replace the example below with your own
     private String nombre;
-    private int cantidadAlcohol;
+    private float cantidadAlcohol;
     
     /**
      * Constructor for objects of class Cubata
      */
-    public Cubata(String nombre, int cantidadAlcohol)
+    public Cubata(String nombre, float cantidadAlcohol)
     {
         this.nombre = nombre;
         this.cantidadAlcohol = cantidadAlcohol;
     }
     
-    public int getBeber()
+    /*
+     * Metodo que depende de la cantidad de alcohol
+     */
+    public float getCantidadAlcohol()
     {
         return cantidadAlcohol;
     }
